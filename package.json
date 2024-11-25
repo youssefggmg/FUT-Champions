@@ -1,0 +1,16 @@
+{
+  "name": "fut-champions",
+  "version": "1.0.0",
+  "description": "The **FUT Team Builder** is an interactive web application that allows users to create, position, and manage their dream FIFA Ultimate Team (FUT). With features like tactical formation adherence, chemistry calculation, and dynamic data management, the app ensures a seamless and engaging experience.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"npx tailwindcss -i ./src/input.css -o ./src/output.css --watch"
+    },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "^3.4.15"
+  }
+}

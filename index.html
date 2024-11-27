@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT champoins</title>
     <link rel="stylesheet" href="https://atugatran.github.io/FontAwesome6Pro/css/all.min.css">
     <link rel="stylesheet" href="./src/output.css">
@@ -22,17 +22,33 @@
         <div id="attack" class="grid grid-cols-2 h-[22%] lg:w-[40%] md:w-[60%] sm:w-[80%]  ">
             <div id="attacker1" class="flex flex-col items-center h-[60%] relative">
                 <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                    alt="player card" class="h-[70%] object-contain">
+                    alt="player card" class="h-[70%] md:h-[80%] object-contain">
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-1/4">
                     <h2 class="font-bold text-xl">STR</h2>
                 </div>
-                <button id="STR" class="absolute top-8">
-                    <i class="fa-solid fa-plus " data-id="STR"></i>
+                <button id="STR" class="absolute top-8 w-[17%] ml-[1%]">
+                    <h6 class="font-bold -mt-[30%]">messi</h6>
+                    <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 ssm:-mt-[1.1em] ssm:w-12 player" >
+                        <div class="sm:hidden ssm:hidden lg:block md:block" >
+                            <img src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="club" class="w-5 h-5">
+                            <img src="https://cdn.sofifa.net/flags/ar.png" alt="club" class="w-5 h-5">
+                        </div>
+                    </div>
+                    <div>
+                        <div class=" text-sm font-light" id="stats1">
+                            <div class="flex">
+                                <p class="font-bold" id="pace">pac:90</p>
+                                <p class="font-bold" id="shooting">sho:90</p>
+                                
+                            </div>
+                        </div>
+                    </div>
                 </button>
             </div>
             <div id="attacker2" class="flex flex-col items-center h-[60%] relative">
                 <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                    alt="player card" class="h-[70%] object-contain">
+                    alt="player card" class="h-[70%] md:h-[80%] object-contain">
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-1/4">
                     <h2 class="font-bold text-xl">STL</h2>
                 </div>

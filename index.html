@@ -11,12 +11,13 @@
 </head>
 
 <body>
-    <div class="absolute p-4 w-full max-w-md h-full md:h-auto hidden z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 " id="addPlayerForm">
+    <div class="absolute p-4 w-full max-w-md h-full md:h-auto hidden z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
+        id="addPlayerForm">
 
         <div class="relative bg-white rounded-lg shadow">
             <button type="button"
-                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center " id="popup-close"><svg
-                    aria-hidden="true" class="w-5 h-5" fill="#c6c7c7" viewBox="0 0 20 20"
+                class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center "
+                id="popup-close"><svg aria-hidden="true" class="w-5 h-5" fill="#c6c7c7" viewBox="0 0 20 20"
                     xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd"
                         d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
@@ -27,21 +28,35 @@
 
             <div class="p-5">
                 <form class="w-full p-11">
-                    <input name="email" type="email" autocomplete="email" required=""
+                    <input name="name" type="text"
                         class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                        placeholder="Email Address" value="">
-                    <input name="password" type="password" autocomplete="current-password" required=""
+                        placeholder="pLayer name " value="" id="playerName">
+                    <input name="PlayerImage" type="text" 
                         class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                        placeholder="Password" value="">
-                        <select id=""></select>
+                        placeholder="player-image" value="" id="playerImage">
+                    <select id="Player-pos" class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1">
+                        <option value="GK">GK</option>
+                        <option value="RB">RB</option>
+                        <option value="LB">LB</option>
+                        <option value="CB">CB</option>
+                        <option value="DM">DM</option>
+                        <option value="CM">CM</option>
+                        <option value="LM">LM</option>
+                        <option value="RM">RM</option>
+                        <option value="AM">AM</option>
+                        <option value="RW">RW</option>
+                        <option value="LW">LW</option>
+                        <option value="ST">ST</option>
+                        <option value="CF">CF</option>
+                    </select>
                     <div class="flex">
-                      <input name="password" type="password" autocomplete="current-password" required=""
-                        class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                        placeholder="Password" value="">
-                        
-                        <input name="password" type="password"  required=""
-                        class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
-                        placeholder="Password" value="">
+                        <input name="password" type="password" autocomplete="current-password" required=""
+                            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                            placeholder="Password" value="">
+
+                        <input name="password" type="password" required=""
+                            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+                            placeholder="Password" value="">
                     </div>
                     <button type="submit"
                         class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 disabled:bg-gray-400">
@@ -57,7 +72,8 @@
         </div>
     </div>
     <div id="soccerField"
-        class="h-[140vh] bg-no-repeat bg-center  flex flex-col items-center gap-4 p-4 rounded-md overflow-hidden " style="background-image: url('./images/soccer-field.png');">
+        class="h-[140vh] bg-no-repeat bg-center  flex flex-col items-center gap-4 p-4 rounded-md overflow-hidden "
+        style="background-image: url('./images/soccer-field.png');">
         <!-- Attack Section -->
         <div id="attack" class="grid grid-cols-2 h-[22%] lg:w-[40%] md:w-[60%] sm:w-[80%]  ">
             <div id="attacker1" class="flex flex-col items-center h-[60%] relative">
@@ -69,8 +85,9 @@
                 <button id="STR" class="absolute top-8 w-[17%] ml-[1%]">
                     <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">messi</h6>
                     <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
-                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  " >
-                        <div class="sm:hidden ssm:hidden lg:block md:block" >
+                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png"
+                            class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                        <div class="sm:hidden ssm:hidden lg:block md:block">
                             <img src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="club" class="w-5 h-5 ">
                             <img src="https://cdn.sofifa.net/flags/ar.png" alt="club" class="w-5 h-5">
                         </div>
@@ -99,31 +116,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-1/4">
                     <h2 class="font-bold text-xl">STR</h2>
                 </div>
-                <button id="STR" class="absolute top-8 w-[17%] ml-[1%]">
-                    <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">messi</h6>
-                    <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
-                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  " >
-                        <div class="sm:hidden ssm:hidden lg:block md:block" >
-                            <img src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="club" class="w-5 h-5 ">
-                            <img src="https://cdn.sofifa.net/flags/ar.png" alt="club" class="w-5 h-5">
-                        </div>
-                    </div>
-                    <div>
-                        <div class=" text-xs font-light slf" id="stats1">
-                            <div class="flex">
-                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
-                                <p class="font-normal" id="shooting">sho:90</p>
-                            </div>
-                            <div class="flex">
-                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
-                                <p class="font-normal" id="shooting">sho:90</p>
-                            </div>
-                            <div class="flex">
-                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
-                                <p class="font-normal" id="shooting">sho:90</p>
-                            </div>
-                        </div>
-                    </div>
+                <button  id="STR" class=" addToPlace absolute top-8 w-[17%] ml-[1%]" data-id="STR">
+                    <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
         </div>
@@ -136,8 +130,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">LM</h2>
                 </div>
-                <button id="LM" class="absolute top-8">
-                    <i class="fa-solid fa-plus " data-id="LM"></i>
+                <button id="LM" class=" addToPlace absolute top-8" data-id="LM">
+                    <i class="fa-solid fa-plus " ></i>
                 </button>
             </div>
             <div id="midfielder2" class="flex flex-col items-center h-[80%] relative">
@@ -146,8 +140,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">CM</h2>
                 </div>
-                <button id="CMR" class="absolute top-8">
-                    <i class="fa-solid fa-plus " data-id="CMR"></i>
+                <button id="CMR" class="absolute top-8 addToPlace" data-id="CMR">
+                    <i class="fa-solid fa-plus "></i>
                 </button>
             </div>
             <div id="midfielder3" class="flex flex-col items-center h-[80%] relative">
@@ -156,8 +150,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">CM</h2>
                 </div>
-                <button id="CML" class="absolute top-8">
-                    <i class="fa-solid fa-plus" data-id="CML"></i>
+                <button id="CML" class=" addToPlace absolute top-8 " data-id="CML">
+                    <i class="fa-solid fa-plus" ></i>
                 </button>
             </div>
             <div id="midfielder4" class="flex flex-col items-center h-[80%] relative">
@@ -166,8 +160,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">RM</h2>
                 </div>
-                <button id="RM" class="absolute top-8">
-                    <i class="fa-solid fa-plus " data-id="RM"></i>
+                <button id="RM" class="absolute top-8 addToPlace" data-id="RM">
+                    <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
         </div>
@@ -180,8 +174,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">LB</h2>
                 </div>
-                <button id="LB" class="absolute top-8">
-                    <i class="fa-solid fa-plus " data-id="LB"></i>
+                <button id="LB" class="absolute addToPlace top-8" data-id="LB">
+                    <i class="fa-solid fa-plus"></i>
                 </button>
             </div>
             <div id="defender2" class="flex flex-col items-center h-[80%] relative">
@@ -190,8 +184,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">CB</h2>
                 </div>
-                <button class="absolute top-8" id="CBL">
-                    <i class="fa-solid fa-plus " data-id="CBL"></i>
+                <button class="absolute top-8 addToPlace" id="CBL" data-id="CBL">
+                    <i class="fa-solid fa-plus "></i>
                 </button>
             </div>
             <div id="defender3" class="flex flex-col items-center h-[80%] relative">
@@ -200,8 +194,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">CB</h2>
                 </div>
-                <button class="absolute top-8" id="CBR">
-                    <i class="fa-solid fa-plus " data-id="CBR"></i>
+                <button class="absolute top-8 addToPlace" id="CBR" data-id="CBR">
+                    <i class="fa-solid fa-plus "></i>
                 </button>
             </div>
             <div id="defender4" class="flex flex-col items-center h-[80%] relative">
@@ -210,8 +204,8 @@
                 <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[60%]">
                     <h2 class="font-bold text-xl">LB</h2>
                 </div>
-                <button class="absolute top-8" id="LB">
-                    <i class="fa-solid fa-plus" data-id="LB"></i>
+                <button class="absolute top-8 addToPlace" id="LB" data-id="LB">
+                    <i class="fa-solid fa-plus" ></i>
                 </button>
             </div>
 
@@ -225,8 +219,8 @@
             <div class="flex justify-center items-center rounded-full bg-gray-200 h-[20%] w-[15%]">
                 <h2 class="font-bold text-xl">GK</h2>
             </div>
-            <button class="absolute top-8" id="GK">
-                <i class="fa-solid fa-plus" data-id="GK"></i>
+            <button class="absolute top-8 addToPlace" id="GK" data-id="" >
+                <i class="fa-solid fa-plus"></i>
             </button>
         </div>
     </div>

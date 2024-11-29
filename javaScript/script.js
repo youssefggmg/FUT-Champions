@@ -42,7 +42,34 @@ const from = `<div class="relative bg-white rounded-lg shadow">
             </select>
             <span id="playerPosetionError" class="text-red-500 text-sm"></span>
             <div id="posetions">
-            
+            <div class="flex">
+    <div>
+        <input name="diving" type="number" id="diving"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Diving">
+        <span id="playerDivingError" class="text-red-500 text-sm"></span>
+    </div>
+    <div>
+        <input name="handling" type="number" id="handling"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Handling">
+        <span id="playerHandlingError" class="text-red-500 text-sm"></span>
+    </div>
+</div>
+<div class="flex">
+    <div>
+        <input name="kicking" type="number" id="kicking"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Kicking">
+        <span id="playerKickingError" class="text-red-500 text-sm"></span>
+    </div>
+    <div>
+        <input name="reflexes" type="number" id="reflexes"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Reflexes">
+        <span id="playerReflexesError" class="text-red-500 text-sm"></span>
+    </div>
+</div>
             </div>
             <button id="submit"
                 class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 mt-3 disabled:bg-gray-400">
@@ -57,6 +84,7 @@ addPlayer.addEventListener("click", () => {
     const popupClose = document.querySelector("#popup-close");
     const submet = document.querySelector("#submit");
     const playerPosition = document.querySelector("#Player-pos");
+    const posetions = document.querySelector("#posetions");
     playerPosition.addEventListener("change", () => {
         const playerPositionValue = playerPosition.value
         if (playerPositionValue != "GK") {
@@ -126,16 +154,8 @@ addPlayer.addEventListener("click", () => {
         e.preventDefault()
         const playerNameError = document.getElementById('playerNameError');
         const playerImageError = document.getElementById('playerImageError');
-        const playerPaceError = document.getElementById('playerPaceerror');
-        const playerShootingError = document.getElementById('playeshottingerror');
-        const playerDribblingError = document.getElementById('playerdribblingerror');
-        const playerDefendingError = document.getElementById('playerdefendingerror');
         const playerName = document.querySelector("#playerName");
         const playerImage = document.querySelector("#playerImage");
-        const pace = document.querySelector("#pace");
-        const shooting = document.querySelector("#shooting");
-        const dribbling = document.querySelector("#dribbling");
-        const defending = document.querySelector("#defending");
         if (!/^[a-zA-Z ]{2,30}$/.test(playerName.value)) {
             playerNameError.innerHTML = "the player name is not required"
             return
@@ -153,7 +173,15 @@ addPlayer.addEventListener("click", () => {
         }
         const playerPosition = document.querySelector("#Player-pos");
         const playerPositionValue = playerPosition.value
-        if (playerPositionValue !== "KG") {
+        if (playerPositionValue !== "GK") {
+            const pace = document.querySelector("#pace");
+            const shooting = document.querySelector("#shooting");
+            const dribbling = document.querySelector("#dribbling");
+            const defending = document.querySelector("#defending");
+            const playerPaceError = document.getElementById('playerPaceerror');
+            const playerShootingError = document.getElementById('playeshottingerror');
+            const playerDribblingError = document.getElementById('playerdribblingerror');
+            const playerDefendingError = document.getElementById('playerdefendingerror');
             if (pace.value <= 0 || pace.value > 100) {
                 playerPaceError.innerHTML = "The pace value must be greater than 0 and less than or equal to 100.";
                 return
@@ -179,17 +207,47 @@ addPlayer.addEventListener("click", () => {
                 playerDefendingError.innerHTML = "";
             }
         }
-        else if (playerPositionValue == "KG") {
+        if (playerPositionValue === "GK") {
+            // Selecting inputs
             const divingInput = document.querySelector('#diving');
             const handlingInput = document.querySelector('#handling');
             const kickingInput = document.querySelector('#kicking');
             const reflexesInput = document.querySelector('#reflexes');
 
-            // Selecting the error spans
+            // Selecting error containers 
             const divingError = document.querySelector('#playerDivingError');
             const handlingError = document.querySelector('#playerHandlingError');
             const kickingError = document.querySelector('#playerKickingError');
             const reflexesError = document.querySelector('#playerReflexesError');
+
+
+            if (divingInput.value <= 0 || divingInput.value > 100) {
+                divingError.innerHTML = "The diving value must be greater than 0 and less than or equal to 100.";
+                return;
+            } else {
+                divingError.innerHTML = "";
+            }
+
+            if (handlingInput.value <= 0 || handlingInput.value > 100) {
+                handlingError.innerHTML = "The handling value must be greater than 0 and less than or equal to 100.";
+                return;
+            } else {
+                handlingError.innerHTML = "";
+            }
+            if (kickingInput.value <= 0 || kickingInput.value > 100) {
+                kickingError.innerHTML = "The kicking value must be greater than 0 and less than or equal to 100.";
+                return;
+            } else {
+                kickingError.innerHTML = "";
+            }
+
+            // Validation for reflexes
+            if (reflexesInput.value <= 0 || reflexesInput.value > 100) {
+                reflexesError.innerHTML = "The reflexes value must be greater than 0 and less than or equal to 100.";
+                return;
+            } else {
+                reflexesError.innerHTML = "";
+            }
         }
         const player = {
             playerName: playerName.value,

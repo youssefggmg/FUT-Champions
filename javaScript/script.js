@@ -3,7 +3,7 @@ const popupClose = document.querySelector("#popup-close");
 const addPlayerForm = document.querySelector("#addPlayerForm");
 const addToPlace = document.querySelectorAll(".addToPlace");
 const modale = document.querySelector("#modale");
-// selection of inputs and elements
+
 const from = `<div class="relative bg-white rounded-lg shadow">
     <button type="button"
         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -78,6 +78,34 @@ const from = `<div class="relative bg-white rounded-lg shadow">
         </form>
     </div>
 </div>`
+let allReservPlayers;
+
+const getReservPlayers = async () => {
+    try {
+        const localData = localStorage.getItem("reserv");
+        if (localData) {
+            allReservPlayers = JSON.parse(localData);
+            return allReservPlayers;
+        } else {
+            const response = await fetch("https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/refs/heads/main/players.json");
+            const data = await response.json();
+            const {players} = data;
+            localStorage.setItem("reserv", JSON.stringify(players));
+            allReservPlayers = players;
+            return players;
+        }
+    } catch (error) {
+        console.error("Error fetching reserve players:", error);
+        allReservPlayers = [];
+        return [];
+    }
+};
+getReservPlayers();
+setTimeout(() => {
+    console.log(allReservPlayers);
+}, 300);
+
+
 
 addPlayer.addEventListener("click", () => {
     modale.innerHTML = from;
@@ -206,6 +234,16 @@ addPlayer.addEventListener("click", () => {
             } else {
                 playerDefendingError.innerHTML = "";
             }
+            const player = {
+                playerName: playerName.value,
+                playerImage: playerImage.value,
+                playerPos: playerPositionValue,
+                pace: pace.value,
+                shooting: shooting.value,
+                dribbling: dribbling.value,
+                defending: defending.value,
+                curentposetion: "reserve bench"
+            }
         }
         if (playerPositionValue === "GK") {
             // Selecting inputs
@@ -248,16 +286,16 @@ addPlayer.addEventListener("click", () => {
             } else {
                 reflexesError.innerHTML = "";
             }
-        }
-        const player = {
-            playerName: playerName.value,
-            playerImage: playerImage.value,
-            playerPos: playerPos.value,
-            pace: pace.value,
-            shooting: shooting.value,
-            dribbling: dribbling.value,
-            defending: defending.value,
-            curentposetion: "reserve bench"
+            const player = {
+                playerName: playerName.value,
+                playerImage: playerImage.value,
+                playerPos: playerPositionValue,
+                pace: pace.value,
+                shooting: shooting.value,
+                dribbling: dribbling.value,
+                defending: defending.value,
+                curentposetion: "reserve bench"
+            }
         }
     })
     popupClose.addEventListener("click", () => {

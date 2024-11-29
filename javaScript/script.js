@@ -4,13 +4,6 @@ const addPlayerForm = document.querySelector("#addPlayerForm");
 const addToPlace = document.querySelectorAll(".addToPlace");
 const modale = document.querySelector("#modale");
 // selection of inputs and elements
-const playerName = document.querySelector("#playerName");
-const playerImage = document.querySelector("#playerImage");
-const playerPos = document.querySelector("#Player-pos");
-const pace = document.querySelector("#pace");
-const shooting = document.querySelector("#shooting");
-const dribbling = document.querySelector("#dribbling");
-const defending = document.querySelector("#defending");
 const from = `<div class="relative bg-white rounded-lg shadow">
     <button type="button"
         class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
@@ -48,7 +41,27 @@ const from = `<div class="relative bg-white rounded-lg shadow">
                 <option value="CF">CF</option>
             </select>
             <span id="playerPosetionError" class="text-red-500 text-sm"></span>
-            <div class="flex">
+            <div id="posetions">
+            
+            </div>
+            <button id="submit"
+                class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 mt-3 disabled:bg-gray-400">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>`
+
+addPlayer.addEventListener("click", () => {
+    modale.innerHTML = from;
+    const popupClose = document.querySelector("#popup-close");
+    const submet = document.querySelector("#submit");
+    const playerPosition = document.querySelector("#Player-pos");
+    playerPosition.addEventListener("change", () => {
+        const playerPositionValue = playerPosition.value
+        if (playerPositionValue != "GK") {
+            posetions.innerHTML = "";
+            posetions.innerHTML = `<div class="flex">
                 <div>
                     <input name="pace" type="number" id="pace"
                         class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
@@ -75,19 +88,40 @@ const from = `<div class="relative bg-white rounded-lg shadow">
                         placeholder="defending">
                     <span id="playerdefendingerror" class="text-red-500 text-sm"></span>
                 </div>
-            </div>
-            <button id="submit"
-                class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none focus:ring-2 focus:ring-black focus:ring-offset-1 mt-3 disabled:bg-gray-400">
-                Continue
-            </button>
-        </form>
+            </div>`;
+        }
+        else if (playerPositionValue == "GK") {
+            posetions.innerHTML = "";
+            posetions.innerHTML = `<div class="flex">
+    <div>
+        <input name="diving" type="number" id="diving"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Diving">
+        <span id="playerDivingError" class="text-red-500 text-sm"></span>
     </div>
-</div>`
-
-addPlayer.addEventListener("click", () => {
-    modale.innerHTML = from;
-    const popupClose = document.querySelector("#popup-close");
-    const submet = document.querySelector("#submit");
+    <div>
+        <input name="handling" type="number" id="handling"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Handling">
+        <span id="playerHandlingError" class="text-red-500 text-sm"></span>
+    </div>
+</div>
+<div class="flex">
+    <div>
+        <input name="kicking" type="number" id="kicking"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Kicking">
+        <span id="playerKickingError" class="text-red-500 text-sm"></span>
+    </div>
+    <div>
+        <input name="reflexes" type="number" id="reflexes"
+            class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-black focus:ring-offset-1"
+            placeholder="Reflexes">
+        <span id="playerReflexesError" class="text-red-500 text-sm"></span>
+    </div>
+</div>`;
+        }
+    })
     submet.addEventListener("click", (e) => {
         e.preventDefault()
         const playerNameError = document.getElementById('playerNameError');
@@ -96,6 +130,12 @@ addPlayer.addEventListener("click", () => {
         const playerShootingError = document.getElementById('playeshottingerror');
         const playerDribblingError = document.getElementById('playerdribblingerror');
         const playerDefendingError = document.getElementById('playerdefendingerror');
+        const playerName = document.querySelector("#playerName");
+        const playerImage = document.querySelector("#playerImage");
+        const pace = document.querySelector("#pace");
+        const shooting = document.querySelector("#shooting");
+        const dribbling = document.querySelector("#dribbling");
+        const defending = document.querySelector("#defending");
         if (!/^[a-zA-Z ]{2,30}$/.test(playerName.value)) {
             playerNameError.innerHTML = "the player name is not required"
             return
@@ -103,21 +143,54 @@ addPlayer.addEventListener("click", () => {
         else {
             playerNameError.innerHTML = ""
         }
-        if (playerImage.value.lenght < 20) {
-            playerImageError.innerHTML = "the player image is not required";
+        if (playerImage.value.length < 20) {
+            playerImageError.innerHTML = "the player image is not required and it must be loger than 20 charecter";
+            return
         } else {
+            console.log(typeof (playerImage.value.length));
+
             playerImageError.innerHTML = "";
         }
-        if (pace.value <= 0 || pace.value > 100 ||
-            shooting.value <= 0 || shooting.value > 100 ||
-            dribbling.value <= 0 || dribbling.value > 100 ||
-            defending.value <= 0 || defending.value > 100) {
-            playerPaceError.innerHTML = ""
-            playerShootingError.innerHTML = ""
-            playerDribblingError.innerHTML = ""
-            playerDefendingError.innerHTML = ""
+        const playerPosition = document.querySelector("#Player-pos");
+        const playerPositionValue = playerPosition.value
+        if (playerPositionValue !== "KG") {
+            if (pace.value <= 0 || pace.value > 100) {
+                playerPaceError.innerHTML = "The pace value must be greater than 0 and less than or equal to 100.";
+                return
+            } else {
+                playerPaceError.innerHTML = "";
+            }
+            if (shooting.value <= 0 || shooting.value > 100) {
+                playerShootingError.innerHTML = "The shooting value must be greater than 0 and less than or equal to 100.";
+                return
+            } else {
+                playerShootingError.innerHTML = "";
+            }
+            if (dribbling.value <= 0 || dribbling.value > 100) {
+                playerDribblingError.innerHTML = "The dribbling value must be greater than 0 and less than or equal to 100.";
+                return
+            } else {
+                playerDribblingError.innerHTML = "";
+            }
+            if (defending.value <= 0 || defending.value > 100) {
+                playerDefendingError.innerHTML = "The defending value must be greater than 0 and less than or equal to 100.";
+                return
+            } else {
+                playerDefendingError.innerHTML = "";
+            }
         }
-        
+        else if (playerPositionValue == "KG") {
+            const divingInput = document.querySelector('#diving');
+            const handlingInput = document.querySelector('#handling');
+            const kickingInput = document.querySelector('#kicking');
+            const reflexesInput = document.querySelector('#reflexes');
+
+            // Selecting the error spans
+            const divingError = document.querySelector('#playerDivingError');
+            const handlingError = document.querySelector('#playerHandlingError');
+            const kickingError = document.querySelector('#playerKickingError');
+            const reflexesError = document.querySelector('#playerReflexesError');
+        }
         const player = {
             playerName: playerName.value,
             playerImage: playerImage.value,

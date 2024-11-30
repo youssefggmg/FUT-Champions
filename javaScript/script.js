@@ -89,10 +89,10 @@ const getReservPlayers = async () => {
         } else {
             const response = await fetch("https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/refs/heads/main/players.json");
             const data = await response.json();
-            const {players} = data;
-            localStorage.setItem("reserv", JSON.stringify(players));
-            allReservPlayers = players;
-            return players;
+            const { players } = data;
+            const cleanedPlayers = players.map(({ club, nationality, rating, physical, ...rest }) => rest);
+            localStorage.setItem("reserv", JSON.stringify(cleanedPlayers));
+            allReservPlayers = cleanedPlayers;
         }
     } catch (error) {
         console.error("Error fetching reserve players:", error);
@@ -100,12 +100,11 @@ const getReservPlayers = async () => {
         return [];
     }
 };
+
 getReservPlayers();
 setTimeout(() => {
     console.log(allReservPlayers);
 }, 300);
-
-
 
 addPlayer.addEventListener("click", () => {
     modale.innerHTML = from;

@@ -13,8 +13,6 @@
 <body>
     <div class="absolute p-4 w-full max-w-md h-full md:h-auto z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 "
         id="modale">
-
-        
     </div>
     <div>
         <div id="addPlayer" class="flex justify-center items-center h-12 mt-4">
@@ -22,153 +20,187 @@
         </div>
     </div>
     <div id="soccerField"
-    class="h-[100vh] bg-no-repeat bg-center flex flex-col items-center gap-4 p-4 rounded-md overflow-hidden"
-    style="background-image: url('./images/soccer-field.png');">
-    <!-- Attack Section -->
-    <div id="attack" class="grid grid-cols-2 h-[22%] lg:w-[40%] md:w-[60%] sm:w-[80%]">
-        <div id="attacker1" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">STR</h2>
+        class="h-[100vh] bg-no-repeat bg-center flex flex-col items-center gap-4 p-4 rounded-md overflow-hidden"
+        style="background-image: url('./images/soccer-field.png');">
+        <!-- Attack Section -->
+        <div id="attack" class="grid grid-cols-2 h-[22%] lg:w-[55%] md:w-[60%] sm:w-[80%]">
+            <div id="attacker1" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">STR</h2>
+                </div>
+                <button id="STL" class="addToPlace absolute top-8 w-[40px]" data-id="STL">
+                    <h6 class="font-bold mt-[20px] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">messi
+                    </h6>
+                    <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                        <img src="https://cdn.sofifa.net/players/158/023/25_120.png" class="mx-auto player  ">
+                    </div>
+                    <div>
+                        <div class=" text-xs font-light slf" id="stats1">
+                            <div class="flex">
+                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                <p class="font-normal" id="shooting">sho:90</p>
+                            </div>
+                            <div class="flex">
+                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                <p class="font-normal" id="shooting">sho:90</p>
+                            </div>
+                            <div class="flex">
+                                <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                <p class="font-normal" id="shooting">sho:90</p>
+                            </div>
+                        </div>
+                    </div>
+                </button>
             </div>
-            <button id="STL" class="addToPlace absolute top-8 w-[40px]" data-id="STL">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="attacker2" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">STR</h2>
+            <div id="attacker2" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">STR</h2>
+                </div>
+                <button id="STR" class="addToPlace absolute top-8 w-[40px]" data-id="STR">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="STR" class="addToPlace absolute top-8 w-[40px]" data-id="STR">
-                <i class="fa-solid fa-plus"></i>
-            </button>
         </div>
-    </div>
 
-    <!-- Midfield Section -->
-    <div id="middle" class="grid grid-cols-4 h-[25%] lg:w-[40%] md:w-[60%] sm:w-[80%]">
-        <div id="midfielder1" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">LM</h2>
+        <!-- Midfield Section -->
+        <div id="middle" class="grid grid-cols-4 h-[25%] lg:w-[40%] md:w-[60%] sm:w-[80%]">
+            <div id="midfielder1" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">LM</h2>
+                </div>
+                <button id="LM" class="addToPlace absolute top-8 w-[40px]" data-id="LM">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="LM" class="addToPlace absolute top-8 w-[40px]" data-id="LM">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="midfielder2" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">CM</h2>
+            <div id="midfielder2" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">CM</h2>
+                </div>
+                <button id="CML" class="addToPlace absolute top-8 w-[40px]" data-id="CML">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="CML" class="addToPlace absolute top-8 w-[40px]" data-id="CML">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="midfielder3" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">CM</h2>
+            <div id="midfielder3" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">CM</h2>
+                </div>
+                <button id="CMR" class="addToPlace absolute top-8 w-[40px]" data-id="CMR">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="CMR" class="addToPlace absolute top-8 w-[40px]" data-id="CMR">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="midfielder4" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">RM</h2>
+            <div id="midfielder4" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">RM</h2>
+                </div>
+                <button id="RM" class="addToPlace absolute top-8 w-[40px]" data-id="RM">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="RM" class="addToPlace absolute top-8 w-[40px]" data-id="RM">
-                <i class="fa-solid fa-plus"></i>
-            </button>
         </div>
-    </div>
 
-    <!-- Defense Section -->
-    <div id="defense" class="grid grid-cols-4 h-[25%] lg:w-[40%] md:w-[60%] sm:w-[80%]">
-        <div id="defender1" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">LB</h2>
+        <!-- Defense Section -->
+        <div id="defense" class="grid grid-cols-4 h-[25%] lg:w-[40%] md:w-[60%] sm:w-[80%]">
+            <div id="defender1" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">LB</h2>
+                </div>
+                <button id="LB" class="addToPlace absolute top-8 w-[40px]" data-id="LB">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="LB" class="addToPlace absolute top-8 w-[40px]" data-id="LB">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="defender2" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">CB</h2>
+            <div id="defender2" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">CB</h2>
+                </div>
+                <button id="CBL" class="addToPlace absolute top-8 w-[40px]" data-id="CBL">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="CBL" class="addToPlace absolute top-8 w-[40px]" data-id="CBL">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="defender3" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">CB</h2>
+            <div id="defender3" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">CB</h2>
+                </div>
+                <button id="CBR" class="addToPlace absolute top-8 w-[40px]" data-id="CBR">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="CBR" class="addToPlace absolute top-8 w-[40px]" data-id="CBR">
-                <i class="fa-solid fa-plus"></i>
-            </button>
-        </div>
-        <div id="defender4" class="flex flex-col items-center relative">
-            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card" class="h-[150px] w-auto object-contain">
-            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-                <h2 class="font-bold text-xl">LB</h2>
+            <div id="defender4" class="flex flex-col items-center relative">
+                <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                    alt="player card" class="h-[150px] w-auto object-contain">
+                <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                    <h2 class="font-bold text-xl">LB</h2>
+                </div>
+                <button id="LBR" class="addToPlace absolute top-8 w-[40px]" data-id="LBR">
+                    <i class="fa-solid fa-plus"></i>
+                </button>
             </div>
-            <button id="LBR" class="addToPlace absolute top-8 w-[40px]" data-id="LBR">
-                <i class="fa-solid fa-plus"></i>
-            </button>
         </div>
-    </div>
 
-    <!-- Goalkeeper Section -->
-    <div id="GK" class="flex flex-col items-center h-[25%] w-1/2 relative">
-        <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-            alt="player card" class="object-contain h-[150px] w-auto">
-        <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
-            <h2 class="font-bold text-xl">GK</h2>
+        <!-- Goalkeeper Section -->
+        <div id="GK" class="flex flex-col items-center h-[25%] w-1/2 relative">
+            <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png" alt="player card"
+                class="object-contain h-[150px] w-auto">
+            <div class="flex justify-center items-center rounded-full bg-gray-200 h-[30px] w-[60px]">
+                <h2 class="font-bold text-xl">GK</h2>
+            </div>
+            <button class="addToPlace absolute top-8 w-[40px]" id="GK" data-id="GK">
+                <i class="fa-solid fa-plus"></i>
+            </button>
         </div>
-        <button class="addToPlace absolute top-8 w-[40px]" id="GK" data-id="GK">
-            <i class="fa-solid fa-plus"></i>
-        </button>
     </div>
-</div>
     <!-- side bare  -->
     <div class="bg-[rgba(2,25,73,0.31)] mt-10 py-4 rounded-[30px] border border-white max-w-[42rem] mx-auto">
-        <div class="flex gap-8 max-w-[38rem] overflow-x-scroll py-4 justify-center mx-auto ">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
-            <img class="w-24 " src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
-                alt="player card">
+        <div class="flex gap-8 max-w-[38rem] overflow-x-scroll py-4 justify mx-auto reservebench ">
+                <div class="flex flex-col items-center relative w-[50%]">
+                    <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                        alt="player card" class="h-[150px] w-auto object-contain">
+                    <button class="reservPlayers absolute top-6 w-[40px]">
+                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">messi
+                        </h6>
+                        <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                            <img src="https://cdn.sofifa.net/players/158/023/25_120.png"
+                                class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                            <div class="sm:hidden ssm:hidden lg:block md:block">
+                                <img src="https://cdn.sofifa.net/meta/team/239235/120.png" alt="club" class="w-5 h-5 ">
+                                <img src="https://cdn.sofifa.net/flags/ar.png" alt="club" class="w-5 h-5">
+                            </div>
+                        </div>
+                        <div>
+                            <div class=" text-xs font-light slf" id="stats1">
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                    <p class="font-normal" id="shooting">sho:90</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                    <p class="font-normal" id="shooting">sho:90</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pac:90</p>
+                                    <p class="font-normal" id="shooting">sho:90</p>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
         </div>
     </div>
     <script src="./javaScript/script.js"></script>

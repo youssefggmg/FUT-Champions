@@ -16,7 +16,7 @@ const getReservPlayers = async () => {
             const response = await fetch("https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/refs/heads/main/players.json");
             const data = await response.json();
             const { players } = data;
-            const cleanedPlayers = players.map(({ club, nationality, rating, physical,passing, ...rest }) => ({
+            const cleanedPlayers = players.map(({ club, nationality, rating, physical, passing, ...rest }) => ({
                 ...rest,
                 curentposetion: "reserve bench"
             }));
@@ -337,10 +337,36 @@ addPlayer.addEventListener("click", () => {
         modale.innerHTML = "";
     })
 })
+const searchForm = `
+<div class="relative bg-white rounded-lg shadow">
+    <button type="button"
+        class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
+        id="popup-close">
+        <svg aria-hidden="true" class="w-5 h-5" fill="#c6c7c7" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clip-rule="evenodd"></path>
+        </svg>
+    </button>
+    <div class="p-1">
+        <form class="w-full p-11">
+            <h1 class="font-bold text-lg"> what is the name of the player you want to add</h1>
+            <input name="name" type="text"
+                class="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 "
+                placeholder="Player name" value="" id="playerName">
+            <span id="playerNameError" class="text-red-500 text-sm"></span>
+            <button id="submit"
+                class="inline-flex w-full items-center justify-center rounded-lg bg-black p-2 py-3 text-sm font-medium text-white outline-none  mt-3 disabled:bg-gray-400">
+                Continue
+            </button>
+        </form>
+    </div>
+</div>
+`
 addToPlace.forEach((place) => {
     place.addEventListener("click", (e) => {
 
-        modale.innerHTML = from;
+        modale.innerHTML = searchForm;
         const popupClose = document.querySelector("#popup-close");
         popupClose.addEventListener("click", () => {
             modale.innerHTML = "";
@@ -351,8 +377,8 @@ addToPlace.forEach((place) => {
 const displayReservBench = () => {
     const reservPlayers = allPlayers.filter((player) => player.curentposetion === "reserve bench");
     reservPlayers.forEach(player => {
-        if (player.position!="GK") {
-            const playerName = player.name.slice(0,7)
+        if (player.position != "GK") {
+            const playerName = player.name.slice(0, 7)
             reserveBench.innerHTML += `
         <div class="flex flex-col items-center relative ">
                     <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
@@ -379,7 +405,7 @@ const displayReservBench = () => {
                 </div>
         `
         }
-        else if(player.position == "GK"){
+        else if (player.position == "GK") {
             reserveBench.innerHTML += `
         <div class="flex flex-col items-center relative ">
                     <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"

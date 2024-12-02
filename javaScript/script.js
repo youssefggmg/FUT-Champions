@@ -276,6 +276,7 @@ addPlayer.addEventListener("click", () => {
                 curentposetion: "reserve bench"
             }
             allPlayers.push(player);
+            displayReservBench();
         }
         if (playerPositionValue === "GK") {
             // Selecting inputs
@@ -329,6 +330,7 @@ addPlayer.addEventListener("click", () => {
                 curentposetion: "reserve bench"
             }
             allPlayers.push(player);
+            displayReservBench();
         }
     })
     popupClose.addEventListener("click", () => {
@@ -336,7 +338,8 @@ addPlayer.addEventListener("click", () => {
     })
 })
 addToPlace.forEach((place) => {
-    place.addEventListener("click", () => {
+    place.addEventListener("click", (e) => {
+
         modale.innerHTML = from;
         const popupClose = document.querySelector("#popup-close");
         popupClose.addEventListener("click", () => {
@@ -349,12 +352,13 @@ const displayReservBench = () => {
     const reservPlayers = allPlayers.filter((player) => player.curentposetion === "reserve bench");
     reservPlayers.forEach(player => {
         if (player.position!="GK") {
+            const playerName = player.name.slice(0,7)
             reserveBench.innerHTML += `
         <div class="flex flex-col items-center relative ">
                     <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
                         alt="player card" class="h-[150px] w-auto object-contain">
                     <button class="reservPlayers absolute top-6 w-[40px]">
-                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
+                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${playerName}</h6>
                         <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
                             <img src="${player.photo}"
                                 class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
@@ -381,10 +385,10 @@ const displayReservBench = () => {
                     <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
                         alt="player card" class="h-[150px] w-auto object-contain">
                     <button class="reservPlayers absolute top-6 w-[40px]">
-                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
+                        <h6 class="font-medium lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
                         <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
                             <img src="${player.photo}"
-                                class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                                class="lg:w-16 -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
                         </div>
                         <div>
                             <div class=" text-xs font-light slf" id="stats1">
@@ -404,3 +408,4 @@ const displayReservBench = () => {
         }
     })
 }
+setTimeout(displayReservBench(), 300);

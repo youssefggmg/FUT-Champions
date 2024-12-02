@@ -3,28 +3,29 @@ const popupClose = document.querySelector("#popup-close");
 const addPlayerForm = document.querySelector("#addPlayerForm");
 const addToPlace = document.querySelectorAll(".addToPlace");
 const modale = document.querySelector("#modale");
-let allReservPlayers;
+const reserveBench = document.querySelector("#reservebench")
+let allPlayers;
 
 const getReservPlayers = async () => {
     try {
-        const localData = localStorage.getItem("reserv");
+        const localData = localStorage.getItem("players");
         if (localData) {
-            allReservPlayers = JSON.parse(localData);
-            return allReservPlayers;
+            allPlayers = JSON.parse(localData);
+            return allPlayers;
         } else {
             const response = await fetch("https://raw.githubusercontent.com/aymanebenhima/FUT-Champ-Ultimate-Team-Assets/refs/heads/main/players.json");
             const data = await response.json();
             const { players } = data;
-            const cleanedPlayers = players.map(({ club, nationality, rating, physical, ...rest }) => ({
+            const cleanedPlayers = players.map(({ club, nationality, rating, physical,passing, ...rest }) => ({
                 ...rest,
                 curentposetion: "reserve bench"
             }));
-            localStorage.setItem("reserv", JSON.stringify(cleanedPlayers));
-            allReservPlayers = cleanedPlayers;
+            localStorage.setItem("players", JSON.stringify(cleanedPlayers));
+            allPlayers = cleanedPlayers;
         }
     } catch (error) {
         console.error("Error fetching reserve players:", error);
-        allReservPlayers = [];
+        allPlayers = [];
         return [];
     }
 };
@@ -32,7 +33,7 @@ const getReservPlayers = async () => {
 
 getReservPlayers();
 setTimeout(() => {
-    console.log(allReservPlayers);
+    console.log(allPlayers);
 }, 300);
 
 const from = `<div class="relative bg-white rounded-lg shadow">
@@ -263,10 +264,10 @@ addPlayer.addEventListener("click", () => {
                 playerDefendingError.innerHTML = "";
             }
             const player = {
-                playerName: playerName.value,
-                playerImage: playerImage.value,
-                playerPos: playerPositionValue,
-                flag:flag.value,
+                name: playerName.value,
+                photo: playerImage.value,
+                position: playerPositionValue,
+                flag: flag.value,
                 logo: logo.value,
                 pace: pace.value,
                 shooting: shooting.value,
@@ -274,7 +275,7 @@ addPlayer.addEventListener("click", () => {
                 defending: defending.value,
                 curentposetion: "reserve bench"
             }
-            allReservPlayers.push(player);
+            allPlayers.push(player);
         }
         if (playerPositionValue === "GK") {
             // Selecting inputs
@@ -318,18 +319,16 @@ addPlayer.addEventListener("click", () => {
                 reflexesError.innerHTML = "";
             }
             const player = {
-                playerName: playerName.value,
-                playerImage: playerImage.value,
-                playerPos: playerPositionValue,
+                name: playerName.value,
+                photo: playerImage.value,
+                position: playerPositionValue,
                 diving: divingInput.value,
                 handling: handlingInput.value,
                 kicking: kickingInput.value,
                 reflexes: reflexesInput.value,
                 curentposetion: "reserve bench"
             }
-            allReservPlayers.push(player);
-            console.log(allReservPlayers);
-            
+            allPlayers.push(player);
         }
     })
     popupClose.addEventListener("click", () => {
@@ -345,3 +344,63 @@ addToPlace.forEach((place) => {
         })
     });
 });
+
+const displayReservBench = () => {
+    const reservPlayers = allPlayers.filter((player) => player.curentposetion === "reserve bench");
+    reservPlayers.forEach(player => {
+        if (player.position!="GK") {
+            reserveBench.innerHTML += `
+        <div class="flex flex-col items-center relative ">
+                    <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                        alt="player card" class="h-[150px] w-auto object-contain">
+                    <button class="reservPlayers absolute top-6 w-[40px]">
+                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
+                        <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                            <img src="${player.photo}"
+                                class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                        </div>
+                        <div>
+                            <div class=" text-xs font-light slf" id="stats1">
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pace:${player.pace}</p>
+                                    <p class="font-normal" id="shooting">sho:${player.shooting}</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">def:${player.defending}</p>
+                                    <p class="font-normal" id="shooting">drib:${player.dribbling}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+        `
+        }
+        else if(player.position == "GK"){
+            reserveBench.innerHTML += `
+        <div class="flex flex-col items-center relative ">
+                    <img src="./images/216-2162479_fifa-20-card-template-hd-png-download-removebg-preview.png"
+                        alt="player card" class="h-[150px] w-auto object-contain">
+                    <button class="reservPlayers absolute top-6 w-[40px]">
+                        <h6 class="font-bold lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
+                        <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                            <img src="${player.photo}"
+                                class="lg:w-16  -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                        </div>
+                        <div>
+                            <div class=" text-xs font-light slf" id="stats1">
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pace:${player.pace}</p>
+                                    <p class="font-normal" id="shooting">ref:${player.reflexes}</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">def:${player.defending}</p>
+                                    <p class="font-normal" id="shooting">drib:${player.dribbling}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </button>
+                </div>
+        `
+        }
+    })
+}

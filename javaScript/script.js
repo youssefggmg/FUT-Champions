@@ -365,8 +365,25 @@ const searchForm = `
 `
 addToPlace.forEach((place) => {
     place.addEventListener("click", (e) => {
-
         modale.innerHTML = searchForm;
+        const playerNameError = document.getElementById('playerNameError');
+        const playerName = document.querySelector("#playerName");
+        const submit = document.querySelector("#submit");
+        submit.addEventListener("click",(e)=>{
+            console.log("clicked");
+            e.preventDefault();
+            const playerNameValue = playerName.value
+            console.log(playerNameValue);
+            
+            if(!/^[a-zA-Z ]{2,30}$/.test(playerNameValue)){
+                playerNameError.textContent = "Player name must be between 2 and 30 characters and only contain letters and spaces";
+                return;
+            }
+            else{
+                playerNameError.textContent = "";
+            }
+            
+        })
         const popupClose = document.querySelector("#popup-close");
         popupClose.addEventListener("click", () => {
             modale.innerHTML = "";

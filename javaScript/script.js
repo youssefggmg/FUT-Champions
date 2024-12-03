@@ -365,24 +365,44 @@ const searchForm = `
 `
 addToPlace.forEach((place) => {
     place.addEventListener("click", (e) => {
+        const fieldPosetion = e.currentTarget.dataset.id;
         modale.innerHTML = searchForm;
         const playerNameError = document.getElementById('playerNameError');
         const playerName = document.querySelector("#playerName");
         const submit = document.querySelector("#submit");
-        submit.addEventListener("click",(e)=>{
-            console.log("clicked");
+        submit.addEventListener("click", (e) => {
             e.preventDefault();
             const playerNameValue = playerName.value
             console.log(playerNameValue);
-            
-            if(!/^[a-zA-Z ]{2,30}$/.test(playerNameValue)){
+            if (!/^[a-zA-Z ]{2,30}$/.test(playerNameValue)){
                 playerNameError.textContent = "Player name must be between 2 and 30 characters and only contain letters and spaces";
                 return;
             }
-            else{
+            else {
                 playerNameError.textContent = "";
             }
-            
+            const inPosetion = allPlayers.findIndex(player => player.curentposetion == fieldPosetion);
+            console.log(inPosetion < 0);
+            if (inPosetion >= 0) {
+                if (Player>=0) {
+                    allPlayers[Player].curentposetion = fieldPosetion
+                }else{
+                    alert("ther is no player with this name in the players lest");
+                    return;
+                }
+                allPlayers[inPosetion].curentposetion = "reserve bench"
+                const inlowerCase = playerNameValue.toLowerCase()
+                const Player = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
+            }
+            else {
+                const inlowerCase = playerNameValue.toLowerCase()
+                const Player = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
+                if (Player>=0) {
+                    allPlayers[Player].curentposetion = fieldPosetion
+                }else{
+                    alert("ther is no player with this name in the players lest");
+                }
+            }
         })
         const popupClose = document.querySelector("#popup-close");
         popupClose.addEventListener("click", () => {
@@ -451,4 +471,5 @@ const displayReservBench = () => {
         }
     })
 }
+
 setTimeout(displayReservBench(), 300);

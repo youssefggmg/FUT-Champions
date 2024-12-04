@@ -32,9 +32,6 @@ const getReservPlayers = async () => {
 
 
 getReservPlayers();
-setTimeout(() => {
-    console.log(allPlayers);
-}, 300);
 
 const from = `<div class="relative bg-white rounded-lg shadow">
     <button type="button"
@@ -56,14 +53,6 @@ const from = `<div class="relative bg-white rounded-lg shadow">
                 class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 "
                 placeholder="player-image" value="" id="playerImage">
             <span id="playerImageError" class="text-red-500 text-sm"></span>
-            <input name="flag" type="text"
-                class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 "
-                placeholder="player-image" value="" id="flag">
-            <span id="flagError" class="text-red-500 text-sm"></span>
-            <input name="logo" type="text"
-                class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 "
-                placeholder="player-image" value="" id="logo">
-            <span id="logoError" class="text-red-500 text-sm"></span>
             <select id="Player-pos"
                 class="mt-2 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm outline-none placeholder:text-gray-400 ">
                 <option value="GK">GK</option>
@@ -195,13 +184,9 @@ addPlayer.addEventListener("click", () => {
         e.preventDefault()
         const playerNameError = document.getElementById('playerNameError');
         const playerImageError = document.getElementById('playerImageError');
-        const flagError = document.getElementById("flagError");
-        const logoError = document.getElementById("logoError");
 
         const playerName = document.querySelector("#playerName");
         const playerImage = document.querySelector("#playerImage");
-        const flag = document.querySelector("#flag");
-        const logo = document.querySelector("#logo");
         if (!/^[a-zA-Z ]{2,30}$/.test(playerName.value)) {
             playerNameError.innerHTML = "the player name is not required"
             return
@@ -215,18 +200,6 @@ addPlayer.addEventListener("click", () => {
         } else {
             console.log(typeof (playerImage.value.length));
             playerImageError.innerHTML = "";
-        }
-        if (flag.value.length < 20) {
-            flagError.innerHTML = "The flag URL must be longer than 20 characters.";
-            return;
-        } else {
-            flagError.innerHTML = "";
-        }
-        if (logo.value.length < 20) {
-            logoError.innerHTML = "The logo URL must be longer than 20 characters.";
-            return;
-        } else {
-            logoError.innerHTML = "";
         }
         const playerPosition = document.querySelector("#Player-pos");
         const playerPositionValue = playerPosition.value
@@ -373,8 +346,7 @@ addToPlace.forEach((place) => {
         submit.addEventListener("click", (e) => {
             e.preventDefault();
             const playerNameValue = playerName.value
-            console.log(playerNameValue);
-            if (!/^[a-zA-Z ]{2,30}$/.test(playerNameValue)){
+            if (!/^[a-zA-Z ]{2,30}$/.test(playerNameValue)) {
                 playerNameError.textContent = "Player name must be between 2 and 30 characters and only contain letters and spaces";
                 return;
             }
@@ -382,24 +354,34 @@ addToPlace.forEach((place) => {
                 playerNameError.textContent = "";
             }
             const inPosetion = allPlayers.findIndex(player => player.curentposetion == fieldPosetion);
-            console.log(inPosetion < 0);
             if (inPosetion >= 0) {
-                if (Player>=0) {
-                    allPlayers[Player].curentposetion = fieldPosetion
-                }else{
-                    alert("ther is no player with this name in the players lest");
-                    return;
-                }
                 allPlayers[inPosetion].curentposetion = "reserve bench"
                 const inlowerCase = playerNameValue.toLowerCase()
-                const Player = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
+                const PlayerIndex = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
+                if (PlayerIndex >= 0) {
+                    allPlayers[PlayerIndex].curentposetion = fieldPosetion;
+                    localStorage.setItem("players", json.stringify(allPlayers));
+                    displayInPlace();
+                    displayReservBench();
+                    modale.innerHTML = "";
+                    console.log(allPlayers);
+                    
+                } else {
+                    alert("ther is no player with this name in the players lest");
+                }
             }
             else {
                 const inlowerCase = playerNameValue.toLowerCase()
-                const Player = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
-                if (Player>=0) {
-                    allPlayers[Player].curentposetion = fieldPosetion
-                }else{
+                const PlayerIndex = allPlayers.findIndex(player => player.name.toLowerCase().includes(inlowerCase))
+                if (PlayerIndex >= 0) {
+                    allPlayers[PlayerIndex].curentposetion = fieldPosetion;
+                    localStorage.setItem("players", JSON.stringify(allPlayers));
+                    displayInPlace();
+                    displayReservBench();
+                    console.log(allPlayers);
+                    
+                    modale.innerHTML = "";
+                } else {
                     alert("ther is no player with this name in the players lest");
                 }
             }
@@ -471,5 +453,57 @@ const displayReservBench = () => {
         }
     })
 }
-
+const displayInPlace = () => {
+    addToPlace.forEach(place => {
+        const placeID = place.dataset.id;
+        const placeSelected = document.querySelector(`#${placeID}`)
+        allPlayers.forEach(player => {
+            if (player.curentposetion == placeID) {
+                const playerName = player.name.slice(0,7)
+                if (player.position != "GK") {
+                    placeSelected.innerHTML = `
+                <h6 class="font-medium lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${playerName}</h6>
+                        <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                            <img src="${player.photo}"
+                                class="lg:w-16 -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                        </div>
+                        <div>
+                            <div class=" text-xs font-light slf" id="stats1">
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pace:${player.pace}</p>
+                                    <p class="font-normal" id="shooting">sho:${player.shooting}</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">def:${player.defending}</p>
+                                    <p class="font-normal" id="shooting">drib:${player.dribbling}</p>
+                                </div>
+                        </div>
+                </div>
+                `
+                } else if (player.position == "GK") {
+                    placeSelected.innerHTML = `
+                    <h6 class="font-medium lg:-[30%] md:-mt-[35%] md:mb-3 lg:mb-1 sm:-mt-[40%] sm:mb-[0.6rem]">${player.name}</h6>
+                        <div class="flex slg:mt-1 lg:-mt-2 md:-mt-2">
+                            <img src="${player.photo}"
+                                class="lg:w-16 -ml-4 lg:-mt-[0.7em] md:-mt-[0.9em] md:w-14 sm:-mt-[1.1em] ssm:w-12 ssm:ml-1 player  ">
+                        </div>
+                        <div>
+                            <div class=" text-xs font-light slf" id="stats1">
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">pace:${player.pace}</p>
+                                    <p class="font-normal" id="shooting">ref:${player.reflexes}</p>
+                                </div>
+                                <div class="flex">
+                                    <p class="font-normal ml-[3px]" id="pace">def:${player.defending}</p>
+                                    <p class="font-normal" id="shooting">drib:${player.dribbling}</p>
+                                </div>
+                            </div>
+                        </div>
+                    `
+                }
+            }
+        })
+    })
+}
 setTimeout(displayReservBench(), 300);
+setTimeout(displayInPlace(), 300);
